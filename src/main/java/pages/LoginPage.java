@@ -21,7 +21,9 @@ public class LoginPage {
         driver.findElement(username).sendKeys(user);
         driver.findElement(password).sendKeys(pass);
         driver.findElement(loginBtn).click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        
+       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
     }
 
     public boolean isInventoryPage() {
