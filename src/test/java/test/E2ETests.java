@@ -12,6 +12,7 @@ import base.TestBase;
 import pages.CartPage;
 import pages.InventoryPage;
 import pages.LoginPage;
+import utils.ElementUtils;
 
 public class E2ETests extends TestBase {
 
@@ -19,12 +20,7 @@ public class E2ETests extends TestBase {
 	public void verifyAddToCartFlow() {
 		LoginPage login = new LoginPage(driver);
 		login.login("standard_user", "secret_sauce");
-		// Work Around to handle Chrome Password Manager issue in MAC
-		driver.navigate().back();
-		driver.navigate().back();
-		// to login Again
-		driver.navigate().forward();
-		driver.navigate().forward();
+		ElementUtils.navigateBackAndForward(driver);
 		InventoryPage inventory = new InventoryPage(driver);
 		inventory.addToCart("Sauce Labs Backpack");
 		inventory.goToCart();
@@ -37,12 +33,7 @@ public class E2ETests extends TestBase {
 	public void verifyLogoutFunctionality() {
 		LoginPage login = new LoginPage(driver);
 		login.login("standard_user", "secret_sauce");
-		// Work Around to handle Chrome Password Manager issue in MAC
-		driver.navigate().back();
-		driver.navigate().back();
-		// to login Again
-		driver.navigate().forward();
-		driver.navigate().forward();
+		ElementUtils.navigateBackAndForward(driver);
 		InventoryPage inventory = new InventoryPage(driver);
 		inventory.logout();
 		Assert.assertTrue(login.isLoginPageDisplayed(), "User was not logged out properly.");
